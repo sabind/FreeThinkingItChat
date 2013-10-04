@@ -15,6 +15,6 @@ before_install:
 services:
   - mongodb
 
-
-
 script: "cucumber"
+
+after_success: "meteor deploy freethinkingitchat.meteor.com"

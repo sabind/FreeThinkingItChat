@@ -19,4 +19,4 @@ services:
 
 script: "cucumber"
 
-after_success: "~/meteor deploy freethinkingitchat.meteor.com"
+after_success: "~/meteor/meteor deploy freethinkingitchat.meteor.com"

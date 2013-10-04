@@ -1,0 +1,57 @@
+<head>
+  <title>Free Thinking [IT] Chat</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row"> 
+			{{> chatroom_header}}
+		</div>
+		<div class="row">
+	 		{{> chatroom}}
+		</div>
+	</div>
+</body>
+
+<template name="chatroom">
+  <div class="row">
+	<div class="span12">
+		<table class="table">
+	      {{#each messages}}
+	        {{> message}}
+	      {{/each}}
+		</table>	
+	</div>
+  </div>
+  <div class="row">
+	{{> chat_box}}
+  </div>	
+</template>
+
+<template name="chatroom_header">
+  <div class="row">
+	<div class="span12">
+		<h1 class="span9">Free Thinking [IT] Chat</h1>
+		{{loginButtons}}
+	</div>
+	</div>
+</template>
+
+<template name="message">
+	<tr>
+		<td>
+			<div class="row">
+		  		<a target="_blank" href="{{user.services.facebook.link}}"><img src="{{user.services.facebook.profile_image_url}}"/>{{user.profile.name}}</a>
+		  		<p>{{message}}</p>
+	  		</div>	
+		</td>
+	</tr>
+</template>
+
+<template name="chat_box">
+	<form action="javascript:void(0)">
+        <label for="msg">Message: </label>
+        <input id="msg" />
+        <button type="submit">&rArr; Send</button>
+    </form>	
+</template>

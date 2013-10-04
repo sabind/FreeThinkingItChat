@@ -8,6 +8,8 @@ gemfile:
   - Gemfile
 
 before_install:
+  - git clone https://github.com/meteor/meteor.git ~/meteor
+  - export PATH=~/meteor/:$PATH
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - gem install bundler
@@ -17,4 +19,4 @@ services:
 
 script: "cucumber"
 
-after_success: "meteor deploy freethinkingitchat.meteor.com"
+after_success: "~/meteor deploy freethinkingitchat.meteor.com"

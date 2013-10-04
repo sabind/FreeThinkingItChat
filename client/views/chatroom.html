@@ -1,0 +1,95 @@
+<template name="chatroom">
+  <div class="row">
+	<div class="span12">
+		<ul class="media-list" style="overflow: scroll; height: 480px;">
+	      {{#each messages}}
+	      	{{#if isTwitterMessage}}
+	      		{{> twitter_message}}
+	      	{{else}}
+	      		{{#if isFacebookMessage}}
+	      			{{> facebook_message}}
+	      		{{else}}
+	      			{{> guest_message}}
+	      		{{/if}}
+	      	{{/if}}
+	      {{/each}}
+		</table>	
+	</div>
+  </div>
+  <div class="row">
+	{{> chat_box}}
+  </div>	
+</template>
+
+<template name="chatroom_header">
+  <div class="row">
+	<div class="span12">
+		<h1 class="span9">Free Thinking [IT] Chat</h1>
+		{{loginButtons}}
+	</div>
+	</div>
+</template>
+
+<template name="chat_box">
+	<div class="row">
+	{{#if isGuest}}
+		{{> guest_form}}
+	{{else}}
+		{{> registered_user_form}}
+	{{/if}}
+	</div>	
+</template>
+
+<template name="guest_form">
+	<form action="javascript:void(0)">
+        <label for="msg">Hi Guest! </label>
+        <input class="span9" id="msg" />
+        <button class="span3" type="submit">&rArr; Send</button>
+    </form>	
+</template>
+
+<template name="registered_user_form">
+	<form action="javascript:void(0)">
+        <input class="span9" id="msg" />
+        <button class="span3" type="submit">&rArr; Send</button>
+    </form>	
+</template>
+
+<template name="facebook_message">
+	<li class="media well well-sm">
+  		<div class="media-body">
+				<h4 class="media-heading">
+					{{user.profile.name}}	
+				</h4>
+				<p>{{timestamp}}</p>
+			<p>{{message}}</p>
+		</div>
+	</li>	
+</template>
+
+<template name="twitter_message">
+	<li class="media well well-sm">
+  		<a class="pull-left" target="_blank" href="http://twitter.com/{{user.services.twitter.screenName}}">
+  			<img class="media-object" src="{{user.services.twitter.profile_image_url}}"/>
+			</a>
+			<div class="media-body">
+					<h4 class="media-heading">
+						{{user.profile.name}}	
+					</h4>
+					<p>{{timestamp}}</p>
+				<p>{{message}}</p>
+			</div>
+  	</li>
+</template>
+
+<template name="guest_message">
+	<li class="media well well-sm">
+		<div class="media-body">
+				<h4 class="media-heading">
+					{{user.profile.name}}	
+				</h4>
+				<p>{{timestamp}}</p>
+			<p>{{message}}</p>
+		</div>
+	</li>
+</template>

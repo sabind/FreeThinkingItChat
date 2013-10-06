@@ -1,6 +1,5 @@
-Deps.autorun(function () {
-    Meteor.subscribe("messages");
-});
+Meteor.subscribe("messages");
+
 Template.chatroom.messages = function () {
     return Messages.find({}, {sort: {when: 1}});
 };

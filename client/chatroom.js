@@ -28,6 +28,18 @@ Template.chat_box.isGuest = function() {
   return Meteor.user() === null
 }
 
+Template.twitter_message.renderInUserTime = function(messageTS) {
+  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+}
+
+Template.facebook_message.renderInUserTime = function(messageTS) {
+  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+}
+
+Template.guest_message.renderInUserTime = function(messageTS) {
+  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+}
+
 Template.chatroom.events = {
   "submit": function (){
     var $msg  = $("#msg");

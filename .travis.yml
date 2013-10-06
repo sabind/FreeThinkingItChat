@@ -17,6 +17,8 @@ before_install:
 services:
   - mongodb
 
-script: "cucumber"
+script:
+  - mrt
+  - cucumber
 
 after_success: "mrt deploy freethinkingitchat.meteor.com"

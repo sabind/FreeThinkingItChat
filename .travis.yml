@@ -19,6 +19,6 @@ services:
 
 script:
   - mrt
-  - cucumber
+  - cucumber URL=localhost PORT=3000
 
 after_success: "mrt deploy freethinkingitchat.meteor.com"

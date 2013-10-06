@@ -63,7 +63,8 @@
 				</h4>
 				<p>{{renderInUserTime timestamp}}</p>
 			<p>{{message}}</p>
-		</div>
+            <button type="button" class="close remove">x</button>
+        </div>
 	</li>	
 </template>
 
@@ -71,14 +72,15 @@
 	<li class="media well well-sm">
   		<a class="pull-left" target="_blank" href="http://twitter.com/{{user.services.twitter.screenName}}">
   			<img class="media-object" src="{{user.services.twitter.profile_image_url}}"/>
-			</a>
-			<div class="media-body">
-					<h4 class="media-heading">
-						{{user.profile.name}}	
-					</h4>
-					<p>{{renderInUserTime timestamp}}</p>
-				<p>{{message}}</p>
-			</div>
+        </a>
+        <div class="media-body">
+                <h4 class="media-heading">
+                    {{user.profile.name}}
+                </h4>
+                <p>{{renderInUserTime timestamp}}</p>
+            <p>{{message}}</p>
+            <button type="button" class="close remove">x</button>
+        </div>
   	</li>
 </template>
 
@@ -90,6 +92,7 @@
 				</h4>
 				<p>{{renderInUserTime timestamp}}</p>
 			<p>{{message}}</p>
-		</div>
+            <button type="button" class="close remove">x</button>
+        </div>
 	</li>
 </template>

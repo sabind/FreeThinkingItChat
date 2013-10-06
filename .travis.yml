@@ -14,12 +14,13 @@ before_install:
   - sh -e /etc/init.d/xvfb start
   - gem install bundler
   - bundle install
+  - mrt update
 services:
   - mongodb
 
 script:
   - mrt &
-  - sleep 10
+  - sleep 7
   - cucumber URL=localhost PORT=3000
 
 after_success: "mrt deploy freethinkingitchat.meteor.com"

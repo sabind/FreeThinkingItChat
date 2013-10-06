@@ -1,9 +1,10 @@
 {
-    "meteor": {
-        "tag": "v0.6.5.1"
-    },
-    "packages": {
-        "moment-timezone": {},
-        "moment": {}
-    }
+  "meteor": {
+    "tag": "v0.6.5.1"
+  },
+  "packages": {
+    "moment-timezone": {},
+    "moment": {},
+    "bootstrap-jasny": {}
+  }
 }

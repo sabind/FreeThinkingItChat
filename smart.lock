@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "moment-timezone": {},
-      "moment": {}
+      "moment": {},
+      "bootstrap-jasny": {}
     },
     "packages": {
       "moment-timezone": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/acreeger/meteor-moment.git",
         "tag": "v2.2.1",
         "commit": "9ee12e714afe56b189f53076447b7b54f3012065"
+      },
+      "bootstrap-jasny": {
+        "git": "https://github.com/limeyd/meteor-bootstrap-jasny.git",
+        "tag": "v1.1.0",
+        "commit": "8ef08074dbfb60c462432c50957604cbef3e976d"
       }
     }
   }

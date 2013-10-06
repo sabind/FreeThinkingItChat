@@ -1,5 +1,6 @@
-Meteor.subscribe("messages");
-
+Deps.autorun(function () {
+    Meteor.subscribe("messages");
+});
 Template.chatroom.messages = function () {
     return Messages.find();
 };
@@ -66,3 +67,21 @@ Template.chatroom.events = {
         $("#messages").scrollTop(99999);
     }
 };
+
+Template.guest_message.events({
+    'click .remove': function () {
+        Messages.remove(this._id);
+    }
+});
+
+Template.facebook_message.events({
+    'click .remove': function () {
+        Messages.remove(this._id);
+    }
+});
+
+Template.twitter_message.events({
+    'click .remove': function () {
+        Messages.remove(this._id);
+    }
+});

@@ -8,8 +8,9 @@ autopublish
 preserve-inputs
 accounts-ui
 accounts-twitter
-bootstrap
 insecure
 
 moment-timezone
 moment
+
+bootstrap-jasny

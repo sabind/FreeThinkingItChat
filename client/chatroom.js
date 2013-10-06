@@ -29,15 +29,15 @@ Template.chat_box.isGuest = function() {
 }
 
 Template.twitter_message.renderInUserTime = function(messageTS) {
-  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+    return moment(messageTS, "LLLL");
 }
 
 Template.facebook_message.renderInUserTime = function(messageTS) {
-  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+    return moment(messageTS, "LLLL");
 }
 
 Template.guest_message.renderInUserTime = function(messageTS) {
-  return timezoneJS.Date(messageTS, [jstz.determine().name()])
+    return moment(messageTS, "LLLL");
 }
 
 Template.chatroom.events = {
@@ -49,7 +49,7 @@ Template.chatroom.events = {
         "twitter": Meteor.user().services.twitter,
         "facebook": Meteor.user().services.facebook, 
         "user": Meteor.user(),
-        "timestamp": (new Date()).toUTCString()
+        "timestamp": moment().format("LLLL")
       });
     } else {
       Messages.insert({
@@ -57,7 +57,7 @@ Template.chatroom.events = {
         "twitter": undefined,
         "facebook": undefined, 
         "user": "Guest",
-        "timestamp": (new Date()).toUTCString()
+        "timestamp": moment().format("LLLL")
       });
     }
     $msg.val("");

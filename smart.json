@@ -1,0 +1,9 @@
+{
+    "meteor": {
+        "tag": "v0.6.5.1"
+    },
+    "packages": {
+        "moment-timezone": {},
+        "moment": {}
+    }
+}

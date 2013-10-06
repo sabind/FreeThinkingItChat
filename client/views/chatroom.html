@@ -1,7 +1,7 @@
 <template name="chatroom">
   <div class="row">
 	<div class="span12">
-		<ul class="media-list" style="overflow: scroll; height: 480px;">
+		<ul id="messages" class="media-list" style="overflow: scroll; height: 480px;">
 	      {{#each messages}}
 	      	{{#if isTwitterMessage}}
 	      		{{> twitter_message}}

@@ -6,11 +6,7 @@
 	      	{{#if isTwitterMessage}}
 	      		{{> twitter_message}}
 	      	{{else}}
-	      		{{#if isFacebookMessage}}
-	      			{{> facebook_message}}
-	      		{{else}}
-	      			{{> guest_message}}
-	      		{{/if}}
+                {{> user_message}}
 	      	{{/if}}
 	      {{/each}}
 		</table>	
@@ -41,28 +37,27 @@
 </template>
 
 <template name="guest_form">
-	<form action="javascript:void(0)">
-        <label for="msg">Hi Guest! </label>
-        <input class="span9" id="msg" />
-        <button class="span3" type="submit">&rArr; Send</button>
-    </form>	
+    <div class="row">
+        <input class="span9 chat" disabled/>
+        <button class="span3 send_message" disabled>&rArr; Send</button>
+    </div>
 </template>
 
 <template name="registered_user_form">
-	<form action="javascript:void(0)">
-        <input class="span9" id="msg" />
-        <button class="span3" type="submit">&rArr; Send</button>
-    </form>	
+    <div class="row">
+        <input class="span9 chat"/>
+        <button class="span3 send_message">&rArr; Send</button>
+    </div>
 </template>
 
-<template name="facebook_message">
+<template name="user_message">
 	<li class="media well well-sm">
   		<div class="media-body">
 				<h4 class="media-heading">
-					{{user.profile.name}}	
+					{{messageOwnerName}}
 				</h4>
-				<p>{{renderInUserTime timestamp}}</p>
-			<p>{{message}}</p>
+				<p>{{renderInUserTime chat_ts}}</p>
+			<p>{{chat}}</p>
             <button type="button" class="close remove">x</button>
         </div>
 	</li>	
@@ -75,24 +70,13 @@
         </a>
         <div class="media-body">
                 <h4 class="media-heading">
-                    {{user.profile.name}}
+                    {{messageOwnerName}}
                 </h4>
-                <p>{{renderInUserTime timestamp}}</p>
-            <p>{{message}}</p>
-            <button type="button" class="close remove">x</button>
+                <p>{{renderInUserTime chat_ts}}</p>
+            <p>{{chat}}</p>
+            {{#if messageBelongsToUser user}}
+                <button type="button" class="close remove">x</button>
+            {{/if}}
         </div>
   	</li>
-</template>
-
-<template name="guest_message">
-	<li class="media well well-sm">
-		<div class="media-body">
-				<h4 class="media-heading">
-					{{user.profile.name}}	
-				</h4>
-				<p>{{renderInUserTime timestamp}}</p>
-			<p>{{message}}</p>
-            <button type="button" class="close remove">x</button>
-        </div>
-	</li>
 </template>

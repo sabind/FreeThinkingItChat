@@ -4,13 +4,13 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
 preserve-inputs
 accounts-ui
 accounts-twitter
-insecure
 
 moment-timezone
 moment
 
 bootstrap-jasny
+accounts-password
+email

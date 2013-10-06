@@ -2,19 +2,11 @@ Deps.autorun(function () {
     Meteor.subscribe("messages");
 });
 Template.chatroom.messages = function () {
-    return Messages.find();
+    return Messages.find({}, {sort: {when: 1}});
 };
 
 Template.chatroom.isTwitterMessage = function() {
     return this.twitter !== undefined
-}
-
-Template.chatroom.isFacebookMessage = function() {
-    return this.facebook !== undefined
-}
-
-Template.chatroom.isGuestMessage = function() {
-    return this.twitter === undefined && this.facebook === undefined
 }
 
 Template.chat_box.isTwitter = function() {
@@ -33,48 +25,28 @@ Template.twitter_message.renderInUserTime = function(messageTS) {
     return moment(messageTS, "LLLL");
 }
 
-Template.facebook_message.renderInUserTime = function(messageTS) {
-    return moment(messageTS, "LLLL");
-}
-
-Template.guest_message.renderInUserTime = function(messageTS) {
+Template.user_message.renderInUserTime = function(messageTS) {
     return moment(messageTS, "LLLL");
 }
 
 Template.chatroom.events = {
-    "submit": function (){
-        var $msg  = $("#msg");
-        if ($msg.val() && Meteor.user() !== null){
-            Messages.insert({
-                "message": $msg.val(),
-                "twitter": Meteor.user().services.twitter,
-                "facebook": Meteor.user().services.facebook,
-                "user": Meteor.user(),
-                "timestamp": moment().format("LLLL")
-            });
-        } else {
-            Messages.insert({
-                "message": $msg.val(),
-                "twitter": undefined,
-                "facebook": undefined,
-                "user": "Guest",
-                "timestamp": moment().format("LLLL")
-            });
-        }
-        $msg.val("");
-        $msg.focus();
-        Meteor.flush()
-        $("#messages").scrollTop(99999);
+    "click .send_message": function (event, template){
+       var msg = template.find(".chat")
+        Meteor.call('createMessage', {
+            chat: msg.value,
+            chat_ts: moment().format("LLLL")
+        }, function (error, message) {
+            if (!error) {
+                msg.value = "";
+                template.find(".chat").focus();
+                Meteor.flush();
+                $("#messages").scrollTop(99999);
+            }
+        });
     }
 };
 
-Template.guest_message.events({
-    'click .remove': function () {
-        Messages.remove(this._id);
-    }
-});
-
-Template.facebook_message.events({
+Template.user_message.events({
     'click .remove': function () {
         Messages.remove(this._id);
     }

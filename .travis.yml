@@ -10,15 +10,15 @@ gemfile:
 before_install:
   - curl https://install.meteor.com | /bin/sh
   - npm install -g meteorite
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - gem install bundler
   - bundle install
 services:
   - mongodb
 
 script:
-  - mrt
+  - mrt &
   - cucumber URL=localhost PORT=3000
 
 after_success: "mrt deploy freethinkingitchat.meteor.com"

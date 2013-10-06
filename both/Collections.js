@@ -40,11 +40,5 @@ Meteor.methods({
     },
     messageBelongsToUser: function(user) {
         return user === this.userId
-    },
-    messageOwnerName: function() {
-        var owner = Meteor.users.findOne(this.user);
-        if (owner._id === Meteor.userId())
-            return "Me";
-        return displayName(owner);
     }
 });

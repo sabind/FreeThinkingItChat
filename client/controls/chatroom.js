@@ -46,6 +46,13 @@ Template.chatroom.events = {
     }
 };
 
+Template.user_message.messageOwnerName = function(user) {
+    var owner = Meteor.users.findOne(user);
+    if (owner._id === Meteor.userId())
+        return "Me";
+    return displayName(owner);
+};
+
 Template.user_message.events({
     'click .remove': function () {
         Messages.remove(this._id);

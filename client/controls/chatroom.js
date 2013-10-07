@@ -5,23 +5,26 @@ Template.chatroom.messages = function () {
 };
 
 Template.chatroom.isTwitterMessage = function() {
-    return this.twitter !== undefined
-}
-
-Template.chat_box.isTwitter = function() {
-    return Meteor.user().services.facebook === undefined
-}
-
-Template.chat_box.isFacebook = function() {
-    return Meteor.user().services.twitter === undefined
-}
-
-Template.chat_box.isGuest = function() {
-    return Meteor.user() === null
+    var owner = Meteor.users.findOne(this.user);
+    return owner !== null && owner !== undefined && owner.services.twitter !== undefined
 }
 
 Template.twitter_message.renderInUserTime = function(messageTS) {
     return moment(messageTS, "LLLL");
+}
+
+Template.twitter_message.getTwitterHandle = function(userId) {
+    var user = Meteor.users.findOne(userId);
+    if (user !== null && user !== undefined) {
+        return user.services.twitter.screenName;
+    }
+}
+
+Template.twitter_message.getTwitterProfileImage = function(userId) {
+    var user = Meteor.users.findOne(userId);
+    if (user !== null && user !== undefined) {
+        return user.services.twitter.profile_image_url;
+    }
 }
 
 Template.user_message.renderInUserTime = function(messageTS) {
@@ -47,6 +50,8 @@ Template.chatroom.events = {
 
 Template.user_message.messageOwnerName = function(user) {
     var owner = Meteor.users.findOne(user);
+    if (owner === null || owner === undefined)
+        return "";
     if (owner._id === Meteor.userId())
         return "Me";
     return displayName(owner);
@@ -54,10 +59,20 @@ Template.user_message.messageOwnerName = function(user) {
 
 Template.twitter_message.messageOwnerName = function(user) {
     var owner = Meteor.users.findOne(user);
+    if (owner === null || owner === undefined)
+        return "";
     if (owner._id === Meteor.userId())
         return "Me";
     return displayName(owner);
 };
+
+Template.twitter_message.messageBelongsToUser = function(user) {
+    return user !== null && user !== undefined && user === Meteor.user()._id
+}
+
+Template.user_message.messageBelongsToUser = function(user) {
+    return user !== null && user !== undefined && user === Meteor.user()._id
+}
 
 Template.user_message.events({
     'click .remove': function () {
@@ -71,10 +86,16 @@ Template.twitter_message.events({
     }
 });
 
-Template.user_message.displayName = function () {
-    return displayName(this);
-};
-
-Template.twitter_message.displayName = function () {
-    return displayName(this);
+var displayName = function (user) {                                                                                          // 30                                                                                          // 31
+    if (!user)                                                                                                         // 32
+        return '';                                                                                                       // 33
+    // 34
+    if (user.profile && user.profile.name)                                                                             // 35
+        return user.profile.name;                                                                                        // 36
+    if (user.username)                                                                                                 // 37
+        return user.username;                                                                                            // 38
+    if (user.emails && user.emails[0] && user.emails[0].address)                                                       // 39
+        return user.emails[0].address;                                                                                   // 40
+    // 41
+    return '';                                                                                                         // 42
 };

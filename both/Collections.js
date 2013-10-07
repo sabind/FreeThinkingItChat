@@ -37,8 +37,5 @@ Meteor.methods({
             chat_ts: message.chat_ts,
             when: new Date()
         });
-    },
-    messageBelongsToUser: function(user) {
-        return user === this.userId
     }
 });

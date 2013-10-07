@@ -58,15 +58,17 @@
 				</h4>
 				<p>{{renderInUserTime chat_ts}}</p>
 			<p>{{chat}}</p>
-            <button type="button" class="close remove">x</button>
+            {{#if messageBelongsToUser user}}
+                <button type="button" class="close remove">x</button>
+            {{/if}}
         </div>
 	</li>	
 </template>
 
 <template name="twitter_message">
 	<li class="media well well-sm">
-  		<a class="pull-left" target="_blank" href="http://twitter.com/{{user.services.twitter.screenName}}">
-  			<img class="media-object" src="{{user.services.twitter.profile_image_url}}"/>
+  		<a class="pull-left" target="_blank" href="http://twitter.com/{{getTwitterHandle user}}">
+  			<img class="media-object" src="{{getTwitterProfileImage user}}"/>
         </a>
         <div class="media-body">
                 <h4 class="media-heading">

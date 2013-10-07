@@ -21,7 +21,6 @@ services:
   - mongodb
 
 script:
-  - firefox
   - nohup bash -c "mrt &" && sleep 10
   - cucumber URL=localhost PORT=3000
 

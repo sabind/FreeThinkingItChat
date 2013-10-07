@@ -52,6 +52,13 @@ Template.user_message.messageOwnerName = function(user) {
     return displayName(owner);
 };
 
+Template.twitter_message.messageOwnerName = function(user) {
+    var owner = Meteor.users.findOne(user);
+    if (owner._id === Meteor.userId())
+        return "Me";
+    return displayName(owner);
+};
+
 Template.user_message.events({
     'click .remove': function () {
         Messages.remove(this._id);
@@ -63,3 +70,11 @@ Template.twitter_message.events({
         Messages.remove(this._id);
     }
 });
+
+Template.user_message.displayName = function () {
+    return displayName(this);
+};
+
+Template.twitter_message.displayName = function () {
+    return displayName(this);
+};

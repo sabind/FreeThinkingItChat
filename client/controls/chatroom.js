@@ -67,11 +67,11 @@ Template.twitter_message.messageOwnerName = function(user) {
 };
 
 Template.twitter_message.messageBelongsToUser = function(user) {
-    return user !== null && user !== undefined && user === Meteor.user()._id
+    return Meteor.user() && user !== null && user !== undefined && user === Meteor.user()._id
 }
 
 Template.user_message.messageBelongsToUser = function(user) {
-    return user !== null && user !== undefined && user === Meteor.user()._id
+    return Meteor.user() && user !== null && user !== undefined && user === Meteor.user()._id
 }
 
 Template.user_message.events({

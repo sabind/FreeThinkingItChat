@@ -1,4 +1,7 @@
 .idea
 *.iml
 
+success_png
+failed_png
+
 smart.lock

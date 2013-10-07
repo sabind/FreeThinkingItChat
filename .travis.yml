@@ -8,6 +8,8 @@ gemfile:
   - Gemfile
 
 before_install:
+  - mkdir success_png
+  - mkdir failed_png
   - curl https://install.meteor.com | /bin/sh
   - npm install -g meteorite
   - export DISPLAY=:99.0

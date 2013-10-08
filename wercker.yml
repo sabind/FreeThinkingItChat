@@ -4,7 +4,7 @@ build:
         - script:
             name: some simple test!
             code: |-
-                nohup bash -c "mrt &" && sleep 10
+                nohup bash -c "mrt &" && sleep 12
                 nohup bash -c "Xvfb $DISPLAY -screen 0 1024x720x16 &" && sleep 4
                 mkdir success_png
                 mkdir failed_png

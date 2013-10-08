@@ -5,3 +5,5 @@
 #Free Thinking IT Chat
 
 Produly building on Wercker and Codeship (still trying to pick one) and powered by Meteor.
+
+Try it out at http://freethinkingitchat.meteor.com

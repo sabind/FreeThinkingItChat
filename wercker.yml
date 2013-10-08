@@ -1,4 +1,4 @@
-box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.12
+box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.13
 build:
     steps:
         - script:

@@ -1,9 +1,11 @@
-box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.13
+box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.14
 build:
     steps:
         - script:
             name: some simple test!
             code: |-
                 nohup bash -c "mrt &" && sleep 10
-                nohup bash -c "Xvfb :99 -screen 0 1024x720x16 &" && sleep 4
+                nohup bash -c "Xvfb $DISPLAY -screen 0 1024x720x16 &" && sleep 4
+                mkdir success_png
+                mkdir failed_png
                 cucumber URL=localhost PORT=3000

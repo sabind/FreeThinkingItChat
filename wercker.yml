@@ -9,3 +9,8 @@ build:
                 mkdir success_png
                 mkdir failed_png
                 cucumber URL=localhost PORT=3000
+deploy:
+    steps:
+        - script:
+            name: deploy freethinkingitchat.meteor.com
+            code: mrt deploy freethinkingitchat.meteor.com

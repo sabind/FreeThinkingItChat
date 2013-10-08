@@ -1,5 +1,8 @@
 box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.12
 build:
     steps:
-        - nohup bash -c "mrt &" && sleep 10
-        - cucumber URL=localhost PORT=3000
+        - script:
+            name: some simple test!
+            code: |-
+                nohup bash -c "mrt &" && sleep 10
+                cucumber URL=localhost PORT=3000

@@ -1,23 +1,6 @@
-box: wercker/ruby
-# Build definition
-# See the Ruby section on the wercker devcenter:
-# http://devcenter.wercker.com/articles/languages/ruby.html
+box: sabind/ubuntu12.04-nodejs0.10-meteor-ruby2.0.0-firefox@0.0.12
 build:
-  # The steps that will be executed on build
-  steps:
-    # A step that executes `bundle install` command
-    - bundle-install
+    steps:
+        - nohup bash -c "mrt &" && sleep 12
+		- cucumber URL=localhost PORT=3000
 
-    # A custom script step, name value is used in the UI
-    # and the code value contains the command that get executed
-    - script:
-        name: echo ruby information
-        code: |
-          echo "ruby version $(ruby --version) running"
-          echo "from location $(which ruby)"
-          echo -p "gem list: $(gem list)"
-
-    # Add more steps here:
-    #- script:
-    #    name: rspec
-    #    code: bundle exec rspec
